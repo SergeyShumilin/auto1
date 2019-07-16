@@ -1,0 +1,359 @@
+$padding-small: 8px;
+$padding-medium: 12px;
+$padding-large: 24px;
+
+$color-gray: #EDEDED;
+$color-dark: #4A4A4A;
+$color-orange-light: #EA7F28;
+$color-orange-dark: #D37324;
+$color-white: #FFFFFF;
+
+$font-family-roboto: 'Roboto', sans-serif;
+
+.font-b1 {
+  font-family: $font-family-roboto;
+  font-weight: bold;
+  font-size: 32px;
+}
+
+.font-b2 {
+  font-family: $font-family-roboto;
+  font-weight: bold;
+  font-size: 18px;
+}
+
+.font-r1 {
+  font-family: $font-family-roboto;
+  font-size: 18px;
+}
+
+.font-r2 {
+  font-family: $font-family-roboto;
+  font-size: 14px;
+}
+
+.font-r3 {
+  font-family: $font-family-roboto;
+  font-size: 12px;
+}
+
+html, body, #root {
+  padding: 0;
+  margin: 0;
+  height: 100%;
+  color: $color-dark;
+}
+
+.main-container {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+
+  .select-component {
+    label {
+      display: block;
+    }
+  
+    select {
+      width: 100%;
+      border: 1px solid $color-gray;
+      padding: $padding-small;
+      margin: $padding-small 0;
+    }
+  }
+  
+  button {
+    width: 128px;
+    height: 32px;
+    background: $color-orange-light;
+    color: $color-gray;
+    border: none;
+    outline: none;
+    cursor: pointer;
+
+    &:active {
+      background: $color-orange-dark;
+    }
+  }
+
+  .logo {
+    height: 30px;
+  }
+
+  .link {
+    color: $color-orange-light;
+    text-decoration: none;
+    cursor: pointer;
+
+    &:hover {
+      color: $color-orange-dark;
+      text-decoration: underline;
+    }
+
+    &.disabled {
+      color: $color-dark;
+      opacity: 0.5;
+      pointer-events: none;
+    }
+  }
+
+  header {
+    display: flex;
+    flex-shrink: 0;
+    height: 80px;
+    align-items: center;
+    padding: 0 $padding-large;
+    border-bottom: 1px solid $color-gray;
+    background: $color-white;
+    box-sizing: border-box;
+    width: 100%;
+  
+    nav {
+      flex: 1;
+      text-align: right;
+  
+      .link {
+        margin-left: $padding-large;
+        color: $color-dark;
+  
+        &:hover {
+          color: $color-dark;
+        }
+      }
+    }
+
+    &.sticky {
+      position: fixed;
+      top: 0;
+      z-index: 1;
+
+      + main {
+        .cars-index {
+          .list-panel {
+            padding-top: 99px;
+          }
+        }
+      }
+    }
+  }
+
+  main {
+    flex: 1;
+
+    .cars-index {
+      display: flex;
+      align-items: flex-start;
+      padding: $padding-large;
+
+      .nav-filter {
+        position: relative;
+        border: 1px solid $color-gray;
+        padding: $padding-large;
+        box-sizing: border-box;
+        width: 30vw;
+        max-width: 300px;
+        top: 0;
+        transition: top .3s ease-in;
+
+        button {
+          float: right;
+          margin-top: $padding-large;
+        }
+
+        .select-component {
+          &:last-of-type {
+            select {
+              margin-bottom: 0;
+            }
+          }
+        }
+
+        &:after {
+          content: '';
+          display: block;
+          clear: both;
+        }
+
+        &.sticky {
+          position: fixed;
+          top: 103px;
+          left: $padding-large;
+
+          + .list-panel {
+            &:before {
+              content: '';
+              width: 30vw;
+              max-width: 300px;
+            }
+          }
+        }
+      }
+
+      .list-panel {
+        display: flex;
+        flex: 1;
+
+        .cars-list {
+          flex: 1;
+          margin-left: $padding-large;
+
+          &-header {
+            display: flex;
+
+            .title {
+              flex: 1;
+              min-width: 278px;
+
+              .font-b2 {
+                margin: 0;
+                padding: 0;
+              }
+
+              .font-r1 {
+                margin: $padding-medium 0 $padding-large;
+              }
+            }
+
+            .sort {
+              max-width: 250px;
+              flex-grow: 1;
+            }
+          }
+
+          &-content {
+            .cars-list-item {
+              display: flex;
+              border: 1px solid $color-gray;
+              padding: $padding-medium;
+              margin-bottom: $padding-medium;
+
+              .image {
+                width: 85px;
+                background: $color-gray;
+                margin-right: $padding-large;
+              }
+
+              .content {
+                flex: 1;
+
+                .font-r3 {
+                  margin-top: $padding-small;
+                }
+              }
+
+              &:last-child {
+                margin-bottom: 0;
+              }
+
+              &.placeholder {
+                .content {
+                  .name, .info, .link-placeholder {
+                    background: $color-gray;
+                    color: $color-gray;
+                  }
+
+                  .name, .info {
+                    width: 300px;
+                  }
+
+                  .link-placeholder {
+                    width: 100px;
+                  }
+                }
+              }
+            }
+          }
+
+          .pagination {
+            text-align: center;
+            padding-top: $padding-large;
+
+            .link {
+              margin-right: $padding-large;
+
+              &:last-child {
+                margin-right: 0;
+              }
+            }
+
+            .text {
+              margin-right: $padding-large;
+            }
+          }
+        }
+      }
+    }
+
+    .cars-show {
+      &-image {
+        height: 300px;
+        background: $color-gray;
+      }
+
+      &-content {
+        width: 800px;
+        margin: 0 auto;
+        padding: $padding-large;
+        display: flex;
+        box-sizing: border-box;
+        
+        .main-panel {
+          flex: 1;
+
+          .font-b1 {
+            margin: 0 0 $padding-large;
+          }
+
+          .font-r1 {
+            margin-bottom: $padding-large;
+          }
+
+          .font-r2 {
+            line-height: 1.5;
+          }
+        }
+
+        .save-panel {
+          width: 300px;
+          margin-left: $padding-large;
+          
+          .save-form {
+            border: 1px solid $color-gray;
+            padding: $padding-large;
+            text-align: right;
+
+            .text {
+              text-align: left;
+              line-height: 1.6;
+              }
+            }
+        }
+      }
+    }
+
+    .error-404 {
+      width: 800px;
+      margin: 200px auto $padding-large;
+      text-align: center;
+
+      .font-b1 {
+        padding: $padding-large;
+        margin: 0;
+      }
+
+      .font-r1 {
+        margin-bottom: $padding-medium;
+      }
+    }
+  }
+
+  footer {
+    flex-shrink: 0;
+    height: 80px;
+    border-top: 1px solid $color-gray;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+}
+
